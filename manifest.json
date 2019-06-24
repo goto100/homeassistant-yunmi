@@ -1,0 +1,13 @@
+{
+  "domain": "yunmi",
+  "name": "Yunmi",
+  "documentation": "https://www.home-assistant.io/components/yunmi",
+  "requirements": [
+    "construct==2.9.45",
+    "python-miio==0.4.5"
+  ],
+  "dependencies": [],
+  "codeowners": [
+    "@goto100"
+  ]
+}

@@ -1,0 +1,13 @@
+set_light_on:
+  description: Set yunmi hood light on
+  fields:
+    entity_id:
+      description: Name of yunmi hodd to set light on
+      example: 'fan.kitchen_hood'
+
+set_light_off:
+  description: Set yunmi hood light off
+  fields:
+    entity_id:
+      description: Name of yunmi hood to set light off
+      example: 'fan.kitchen_hood'
