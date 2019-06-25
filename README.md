@@ -30,3 +30,7 @@ fan:
  yunmi.set_light_on
  yunmi.set_light_off
  ```
+
+## 鸣谢
+
+饮水吧协议参考了 lukezzz 的 [homeassistant-yunmi-kettle](https://github.com/lukezzz/homeassistant-yunmi-kettle) ，将多个 sensor 改造为 water_heater 组件
