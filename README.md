@@ -1,5 +1,7 @@
 # homeassistant-yunmi
 
+把所有代码放在 `custom_components/yunmi` 目录中，在 configuration.yaml 中做相应配置：
+
 ## 饮水吧
 
 * 已测试版本：`yunmi.kettle.r1`
