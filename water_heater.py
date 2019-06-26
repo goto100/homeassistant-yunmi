@@ -47,7 +47,7 @@ class YunmiKettle(WaterHeaterDevice):
     def __init__(self, device, name):
         """Initialize the YunmiKettle."""
         self._name = name
-        self._support_features = SUPPORT_TARGET_TEMPERATURE | SUPPORT_OPERATION_MODE
+        self._support_features = SUPPORT_TARGET_TEMPERATURE
         self._min_temp = 40
         self._max_temp = 90
         self._device = device
@@ -128,19 +128,14 @@ class YunmiKettle(WaterHeaterDevice):
             if work_mode == 0:
                 # 常温，固定水温
                 self._current_operation = STATE_NORMAL
-                self._min_temp = self._target_temperature
-                self._max_temp = self._target_temperature
                 self._current_temperature = self._target_temperature # 常温输出水温
             elif work_mode == 1:
                 # 温水模式
                 self._current_operation = STATE_WARM
                 self._min_temp = min_set_tempe
-                self._max_temp = 90
             elif work_mode == 2:
                 # 开水模式
                 self._current_operation = STATE_BOILED
-                self._min_temp = self._target_temperature
-                self._max_temp = self._target_temperature
 
             self._state_attrs.update({
                 "tds": '{}ppm'.format(tds),
@@ -153,4 +148,6 @@ class YunmiKettle(WaterHeaterDevice):
     
     def set_temperature(self, **kwargs):
         """Set new target temperatures."""
-        self._device.send('set_tempe_setup', [1, int(kwargs[ATTR_TEMPERATURE])])
+        tempe = int(kwargs[ATTR_TEMPERATURE])
+        self._device.send('set_tempe_setup', [1, tempe])
+        self._target_temperature = tempe
