@@ -113,34 +113,30 @@ class YunmiKettle(WaterHeaterDevice):
     def update(self):
         """Get the latest data and updates the states."""
         try:
-            target_temperature = self._device.send('get_prop', ["setup_tempe"])[0]
+            target_temperature = self._device.send('get_prop', ["custom_tempe1"])[0]
             current_temperature = self._device.send('get_prop', ["curr_tempe"])[0]
             tds = self._device.send('get_prop', ["tds"])[0]
             water_ramain_time = self._device.send('get_prop', ["water_remain_time"])[0]
             min_set_tempe = self._device.send('get_prop', ["min_set_tempe"])[0]
             work_mode = self._device.send('get_prop', ["work_mode"])[0]
 
-            custom_tempe = self._device.send('get_prop', ["custom_tempe1"])[0]
-
             self._target_temperature = int(target_temperature)
             self._current_temperature = int(current_temperature)
+            self._min_temp = min_set_tempe
 
             if work_mode == 0:
                 # 常温，固定水温
                 self._current_operation = STATE_NORMAL
-                self._current_temperature = self._target_temperature # 常温输出水温
             elif work_mode == 1:
-                # 温水模式
+                # 温水模式
                 self._current_operation = STATE_WARM
-                self._min_temp = min_set_tempe
             elif work_mode == 2:
                 # 开水模式
                 self._current_operation = STATE_BOILED
 
             self._state_attrs.update({
                 "tds": '{}ppm'.format(tds),
-                "water_ramain_time": '{}hour'.format(water_ramain_time),
-                "custom_tempe1": custom_tempe
+                "water_ramain_time": '{}hour'.format(water_ramain_time)
             })
         except DeviceException:
             _LOGGER.exception('Fail to get_prop from YunmiKettle')
