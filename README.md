@@ -14,6 +14,19 @@ water_heater:
     name: Yunmi Kettle
 ```
 
+通过 template sensor 查看水质 tds
+
+```
+sensor:
+  - platform: template
+    sensors:
+      kettle_tds:
+        friendly_name: "Kettle TDS"
+        value_template: "{{ state_attr('water_heater.yunmi_kettle', 'tds') }}"
+        icon_template: "mdi:cup-water"
+        unit_of_measurement: 'ppm'
+```
+
 ## 油烟机
 
 * 已测试版本：`viomi.hood.c1`
