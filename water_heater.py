@@ -64,7 +64,7 @@ class YunmiKettle(WaterHeaterDevice):
     @property
     def icon(self):
         """Icon to use in the frontend, if any."""
-        return 'mdi:water'
+        return 'mdi:kettle'
     
     @property
     def supported_features(self):
@@ -135,7 +135,7 @@ class YunmiKettle(WaterHeaterDevice):
                 self._current_operation = STATE_BOILED
 
             self._state_attrs.update({
-                "tds": '{}ppm'.format(tds),
+                "tds": tds,
                 "water_ramain_time": '{}hour'.format(water_ramain_time)
             })
         except DeviceException:
