@@ -5,7 +5,6 @@ from homeassistant.exceptions import (PlatformNotReady)
 from homeassistant.components.fan import (SPEED_OFF, SPEED_LOW, SPEED_MEDIUM, SPEED_HIGH,
                                           FanEntity, SUPPORT_SET_SPEED,
                                           SUPPORT_OSCILLATE, SUPPORT_DIRECTION)
-from homeassistant.components.climate.const import (STATE_AUTO, STATE_ECO)
 from homeassistant.const import (STATE_UNKNOWN, ATTR_ENTITY_ID, CONF_NAME, CONF_HOST, CONF_TOKEN, )
 from datetime import timedelta
 from miio import Device, DeviceException
