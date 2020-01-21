@@ -65,20 +65,20 @@ class YunmiKettle(WaterHeaterDevice):
     def icon(self):
         """Icon to use in the frontend, if any."""
         return 'mdi:kettle'
-    
+
     @property
     def supported_features(self):
         """Return the list of supported features."""
         return self._support_features
-    
+
     @property
     def operation_list(self):
         return [STATE_NORMAL, STATE_WARM, STATE_BOILED]
-    
+
     @property
     def current_operation(self):
         return self._current_operation
-    
+
     @property
     def should_poll(self):
         return True
@@ -91,17 +91,17 @@ class YunmiKettle(WaterHeaterDevice):
     @property
     def device_state_attributes(self):
         return self._state_attrs
-    
+
     @property
     def target_temperature(self):
         """Return the temperature we try to reach."""
         return self._target_temperature
-    
+
     @property
     def current_temperature(self):
         """Return the current temperature."""
         return self._current_temperature
-    
+
     @property
     def min_temp(self):
         return self._min_temp
@@ -109,7 +109,7 @@ class YunmiKettle(WaterHeaterDevice):
     @property
     def max_temp(self):
         return self._max_temp
-    
+
     def update(self):
         """Get the latest data and updates the states."""
         try:
@@ -141,7 +141,7 @@ class YunmiKettle(WaterHeaterDevice):
         except DeviceException:
             _LOGGER.exception('Fail to get_prop from YunmiKettle')
             raise PlatformNotReady
-    
+
     def set_temperature(self, **kwargs):
         """Set new target temperatures."""
         tempe = int(kwargs[ATTR_TEMPERATURE])
